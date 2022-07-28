@@ -55,7 +55,7 @@ class translator:
                 print(f"[INFO] ready {row_id + 1}/{data_list_len} for {round(time.time() - start_iteration_time, 2)}s")
             except Exception as _ex:
                 print("[ERROR] some one do wrong:\n", _ex)
-            return "[INFO] congratulations, congratulations, congratulations"
+        return "[INFO] congratulations, congratulations, congratulations"
 
 if __name__ == '__main__':
     translator().translate(connectCSV.read_file())
