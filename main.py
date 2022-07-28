@@ -8,8 +8,7 @@ class connectCSV:
     
     @classmethod
     def read_file(cls) -> list[list]:
-        # endpint: str = "positions_and_skills.csv"
-        endpint: str = "test_pas.csv"
+        endpint: str = "positions_and_skills.csv"
         table_from_endpint_csv_file = []
         with codecs.open(endpint, "r", "utf_8_sig") as csv_file:
             read_csv_file = csv.reader(csv_file)
@@ -44,6 +43,8 @@ class translator:
                 time_list = []
                 for item_id in range(0, len(data_list[row_id])):
                     item = data_list[row_id][item_id]
+                    if len(optimiztion_dict) > 1000:
+                        optimiztion_dict.clear()
                     if item_id < self.columns:
                         if optimiztion_dict.get (item) == None:
                             optimiztion_dict.update ({item : self.example_of_translator.translate(item, dest=self.to_lang).text})
@@ -57,4 +58,4 @@ class translator:
             print("[ERROR] some one do wrong:\n", _ex)
 
 if __name__ == '__main__':
-    translator().translate(connectCSV.read_file())
+    translator(start_pint_id=20036).translate(connectCSV.read_file())
