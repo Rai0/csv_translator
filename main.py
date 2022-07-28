@@ -36,8 +36,8 @@ class translator:
     def translate (self, data_list: list) -> str:
         data_list_len = len(data_list)
         optimiztion_dict = {}
-        try:
-            for row_id in range(self.start_pint_id, data_list_len):
+        for row_id in range(self.start_pint_id, data_list_len):
+            try:
                 gc.collect()
                 start_iteration_time = time.time()
                 time_list = []
@@ -53,9 +53,9 @@ class translator:
                         time_list.append(item)
                 connectCSV.writer_file(time_list)
                 print(f"[INFO] ready {row_id + 1}/{data_list_len} for {round(time.time() - start_iteration_time, 2)}s")
+            except Exception as _ex:
+                print("[ERROR] some one do wrong:\n", _ex)
             return "[INFO] congratulations, congratulations, congratulations"
-        except Exception as _ex:
-            print("[ERROR] some one do wrong:\n", _ex)
 
 if __name__ == '__main__':
-    translator(start_pint_id=20036).translate(connectCSV.read_file())
+    translator().translate(connectCSV.read_file())
